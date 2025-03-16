@@ -8,16 +8,34 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      meta: { layout: 'auth', requiresAuth: false },
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { left: 0, top: 0 }
+    }
+  },
 })
+
+/*router.beforeEach(async (to, from, next) => {
+    const requiresAuth = to.meta.requiresAuth;
+
+    if (requiresAuth) {
+        const auth = await useAuthStore().isAuthenticated();
+
+        //console.log(auth)
+
+        if (auth) {
+            next();
+        } else {
+            next({ name: 'login', query: { redirect: to.path } }); // Redirige avec la route d'origine
+        }
+    } else {
+        next();
+    }
+});*/
 
 export default router
