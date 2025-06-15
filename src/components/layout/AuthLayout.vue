@@ -1,12 +1,12 @@
 <template>
   <div
-    class="min-h-screen transition-colors duration-500"
+    class="min-h-screen transition-colors duration-500 font-serif"
     :class="isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'"
   >
     <TheHeader />
-
-    <RouterView />
-
+    <div class="w-full overflow-hidden">
+      <RouterView />
+    </div>
     <TheFooter />
   </div>
 </template>

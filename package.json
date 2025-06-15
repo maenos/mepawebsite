@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
     "@vueuse/motion": "^3.0.3",
+    "axios": "^1.8.4",
     "lucide-vue-next": "^0.482.0",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.0.14",

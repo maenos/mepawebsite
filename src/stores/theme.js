@@ -11,6 +11,10 @@ export const useThemeStore = defineStore('theme', () => {
     localStorage.setItem('darkMode', isDarkMode.value)
   }
 
+  const toggleMobileMenu = () => {
+    mobileMenuOpen.value = !mobileMenuOpen.value
+  }
+
   // Initialiser le thème
   onMounted(() => {
     const savedTheme = localStorage.getItem('darkMode')
@@ -42,5 +46,6 @@ export const useThemeStore = defineStore('theme', () => {
     isDarkMode,
     mobileMenuOpen,
     toggleTheme,
+    toggleMobileMenu,
   }
 })

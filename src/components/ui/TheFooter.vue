@@ -1,255 +1,384 @@
 <template>
   <footer
-    class="py-12 border-t transition-colors duration-500"
+    class="py-16 border-t transition-colors duration-500 relative overflow-hidden"
     :class="
       isDarkMode
         ? 'bg-black text-white border-white/10'
-        : 'bg-gray-900 text-white border-gray-800'
+        : 'bg-amber-50 text-gray-900 border-amber-100/50'
     "
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+      <div
+        class="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-amber-500 blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-amber-500 blur-3xl"
+      ></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
+        <!-- Column 1: Logo and Description -->
         <div>
-          <div class="flex items-center mb-4">
+          <div class="flex items-center mb-6">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lll-7NEmvicZ2fhXgM3ScFv4l5zSKo5Iq2.png"
               alt="Logo SLC"
-              class="h-8 w-auto"
+              class="h-10 w-auto"
+              :class="isDarkMode ? 'brightness-100' : 'brightness-90'"
             />
-            <span class="ml-2 text-xl font-semibold">Centre Siloé / Mepavie</span>
+            <span
+              class="ml-3 text-xl font-serif font-semibold"
+              :class="isDarkMode ? 'text-white' : 'text-gray-900'"
+            >
+              Centre Siloé / Mepavie
+            </span>
           </div>
-          <p class="text-gray-400">
+          <p
+            class="leading-relaxed mb-6"
+            :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
+          >
             Un lieu de culte, de communauté et de croissance spirituelle au cœur de la
             ville.
           </p>
+
+          <!-- Theme Toggle -->
+          <div class="flex items-center">
+            <button
+              @click="toggleTheme"
+              class="group flex items-center space-x-2 rounded-full px-4 py-2 transition-all duration-300"
+              :class="
+                isDarkMode
+                  ? 'bg-white/10 hover:bg-white/15'
+                  : 'bg-amber-100 hover:bg-amber-200'
+              "
+            >
+              <Sun v-if="isDarkMode" class="h-4 w-4 text-amber-100" />
+              <Moon v-else class="h-4 w-4 text-amber-700" />
+              <span
+                class="text-sm font-medium"
+                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+              >
+                {{ isDarkMode ? "Mode Clair" : "Mode Sombre" }}
+              </span>
+            </button>
+          </div>
         </div>
 
+        <!-- Column 2: Address -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Adresse</h4>
-          <ul class="space-y-2 text-gray-400">
+          <h4
+            class="text-lg font-serif font-semibold mb-6"
+            :class="isDarkMode ? 'text-white' : 'text-gray-900'"
+          >
+            Adresse
+          </h4>
+          <ul class="space-y-4">
             <li class="flex items-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mr-2 mt-0.5 flex-shrink-0"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>123 Rue de l'Église<br />75000 Paris, France</span>
+              <MapPin
+                class="h-5 w-5 mr-3 mt-1 flex-shrink-0"
+                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+              />
+              <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
+                123 Rue de l'Église<br />75000 Paris, France
+              </span>
             </li>
             <li class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mr-2 flex-shrink-0"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                ></path>
-              </svg>
-              <span>+33 1 23 45 67 89</span>
+              <Phone
+                class="h-5 w-5 mr-3 flex-shrink-0"
+                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+              />
+              <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
+                +33 1 23 45 67 89
+              </span>
             </li>
             <li class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mr-2 flex-shrink-0"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
-              <span>contact@siloecentre.fr</span>
+              <Mail
+                class="h-5 w-5 mr-3 flex-shrink-0"
+                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+              />
+              <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
+                contact@siloecentre.fr
+              </span>
             </li>
           </ul>
         </div>
 
+        <!-- Column 3: Social Media -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Réseaux Sociaux</h4>
-          <ul class="space-y-2">
+          <h4
+            class="text-lg font-serif font-semibold mb-6"
+            :class="isDarkMode ? 'text-white' : 'text-gray-900'"
+          >
+            Réseaux Sociaux
+          </h4>
+          <ul class="space-y-4">
             <li>
               <a
                 href="#"
-                class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center"
+                class="group flex items-center transition-all duration-300"
+                :class="
+                  isDarkMode
+                    ? 'text-gray-300 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+                "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <div
+                  class="h-8 w-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-110"
+                  :class="
+                    isDarkMode
+                      ? 'bg-white/10 group-hover:bg-white/15'
+                      : 'bg-amber-100 group-hover:bg-amber-200'
+                  "
                 >
-                  <path
-                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                  ></path>
-                </svg>
+                  <Facebook
+                    class="h-4 w-4"
+                    :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+                  />
+                </div>
                 <span>Facebook</span>
               </a>
             </li>
             <li>
               <a
                 href="#"
-                class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center"
+                class="group flex items-center transition-all duration-300"
+                :class="
+                  isDarkMode
+                    ? 'text-gray-300 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+                "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <div
+                  class="h-8 w-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-110"
+                  :class="
+                    isDarkMode
+                      ? 'bg-white/10 group-hover:bg-white/15'
+                      : 'bg-amber-100 group-hover:bg-amber-200'
+                  "
                 >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                </svg>
+                  <Instagram
+                    class="h-4 w-4"
+                    :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+                  />
+                </div>
                 <span>Instagram</span>
               </a>
             </li>
             <li>
               <a
                 href="#"
-                class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center"
+                class="group flex items-center transition-all duration-300"
+                :class="
+                  isDarkMode
+                    ? 'text-gray-300 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+                "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <div
+                  class="h-8 w-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-110"
+                  :class="
+                    isDarkMode
+                      ? 'bg-white/10 group-hover:bg-white/15'
+                      : 'bg-amber-100 group-hover:bg-amber-200'
+                  "
                 >
-                  <path
-                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
-                  ></path>
-                </svg>
+                  <Twitter
+                    class="h-4 w-4"
+                    :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+                  />
+                </div>
                 <span>Twitter</span>
               </a>
             </li>
             <li>
               <a
                 href="#"
-                class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-1 inline-flex items-center"
+                class="group flex items-center transition-all duration-300"
+                :class="
+                  isDarkMode
+                    ? 'text-gray-300 hover:text-white'
+                    : 'text-gray-700 hover:text-gray-900'
+                "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <div
+                  class="h-8 w-8 rounded-full flex items-center justify-center mr-3 transition-all duration-300 group-hover:scale-110"
+                  :class="
+                    isDarkMode
+                      ? 'bg-white/10 group-hover:bg-white/15'
+                      : 'bg-amber-100 group-hover:bg-amber-200'
+                  "
                 >
-                  <path
-                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
-                  ></path>
-                  <path d="m10 15 5-3-5-3z"></path>
-                </svg>
+                  <Youtube
+                    class="h-4 w-4"
+                    :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+                  />
+                </div>
                 <span>YouTube</span>
               </a>
             </li>
           </ul>
         </div>
 
+        <!-- Column 4: Newsletter -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">S'abonner</h4>
-          <p class="text-gray-400 mb-4">
+          <h4
+            class="text-lg font-serif font-semibold mb-6"
+            :class="isDarkMode ? 'text-white' : 'text-gray-900'"
+          >
+            S'abonner
+          </h4>
+          <p
+            class="mb-6 leading-relaxed"
+            :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
+          >
             Abonnez-vous à notre newsletter pour recevoir les mises à jour sur les
             sermons, événements et actualités de l'église.
           </p>
-          <form class="flex">
-            <input
-              type="email"
-              placeholder="Votre email"
-              class="px-4 py-2 w-full rounded-l-md focus:outline-none focus:ring-1 focus:ring-white text-white"
-              :class="
-                isDarkMode
-                  ? 'bg-white/5 border border-white/10'
-                  : 'bg-gray-800 border border-gray-700'
-              "
-            />
-            <button
-              type="submit"
-              class="px-4 py-2 rounded-r-md transition-all duration-300"
-              :class="
-                isDarkMode
-                  ? 'bg-white hover:bg-gray-200 text-black'
-                  : 'bg-white hover:bg-gray-200 text-black'
-              "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+          <form class="space-y-3">
+            <div class="flex rounded-full overflow-hidden shadow-sm">
+              <input
+                type="email"
+                placeholder="Votre email"
+                class="px-5 py-3 w-full focus:outline-none"
+                :class="
+                  isDarkMode
+                    ? 'bg-white/10 text-white placeholder:text-white/50'
+                    : 'bg-white text-gray-900 placeholder:text-gray-500'
+                "
+              />
+              <button
+                type="submit"
+                class="px-4 py-3 transition-all duration-300 flex items-center justify-center"
+                :class="
+                  isDarkMode
+                    ? 'bg-amber-100 hover:bg-amber-200 text-gray-900'
+                    : 'bg-amber-700 hover:bg-amber-800 text-white'
+                "
               >
-                <path d="m22 2-7 20-4-9-9-4Z"></path>
-                <path d="M22 2 11 13"></path>
-              </svg>
-            </button>
+                <Send class="h-5 w-5" />
+              </button>
+            </div>
+            <p class="text-xs" :class="isDarkMode ? 'text-gray-400' : 'text-gray-600'">
+              Nous respectons votre vie privée. Désabonnez-vous à tout moment.
+            </p>
           </form>
         </div>
       </div>
 
+      <!-- Bottom Section with Links and Copyright -->
       <div
-        class="border-t mt-8 pt-8 text-center text-gray-400"
-        :class="isDarkMode ? 'border-white/10' : 'border-gray-800'"
+        class="border-t mt-12 pt-8 flex flex-col md:flex-row md:justify-between md:items-center gap-6"
+        :class="isDarkMode ? 'border-white/10' : 'border-amber-100'"
       >
-        <p>&copy; 2025 Centre Siloé. Tous droits réservés.</p>
+        <!-- Quick Links -->
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          <a
+            href="#"
+            class="text-sm transition-all duration-300 relative group"
+            :class="
+              isDarkMode
+                ? 'text-gray-300 hover:text-white'
+                : 'text-gray-700 hover:text-gray-900'
+            "
+          >
+            Accueil
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+              :class="isDarkMode ? 'bg-white' : 'bg-gray-900'"
+            ></span>
+          </a>
+          <a
+            href="#"
+            class="text-sm transition-all duration-300 relative group"
+            :class="
+              isDarkMode
+                ? 'text-gray-300 hover:text-white'
+                : 'text-gray-700 hover:text-gray-900'
+            "
+          >
+            À propos
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+              :class="isDarkMode ? 'bg-white' : 'bg-gray-900'"
+            ></span>
+          </a>
+          <a
+            href="#"
+            class="text-sm transition-all duration-300 relative group"
+            :class="
+              isDarkMode
+                ? 'text-gray-300 hover:text-white'
+                : 'text-gray-700 hover:text-gray-900'
+            "
+          >
+            Sermons
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+              :class="isDarkMode ? 'bg-white' : 'bg-gray-900'"
+            ></span>
+          </a>
+          <a
+            href="#"
+            class="text-sm transition-all duration-300 relative group"
+            :class="
+              isDarkMode
+                ? 'text-gray-300 hover:text-white'
+                : 'text-gray-700 hover:text-gray-900'
+            "
+          >
+            Événements
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+              :class="isDarkMode ? 'bg-white' : 'bg-gray-900'"
+            ></span>
+          </a>
+          <a
+            href="#"
+            class="text-sm transition-all duration-300 relative group"
+            :class="
+              isDarkMode
+                ? 'text-gray-300 hover:text-white'
+                : 'text-gray-700 hover:text-gray-900'
+            "
+          >
+            Contact
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+              :class="isDarkMode ? 'bg-white' : 'bg-gray-900'"
+            ></span>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-sm" :class="isDarkMode ? 'text-gray-400' : 'text-gray-600'">
+          &copy; 2025 Centre Siloé. Tous droits réservés.
+        </p>
       </div>
     </div>
   </footer>
 </template>
+
 <script setup>
-import { ref, computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useThemeStore } from "@/stores/theme";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Send,
+  Sun,
+  Moon,
+} from "lucide-vue-next";
 
 const themeStore = useThemeStore();
-
-const isDarkMode = computed(() => {
-  return themeStore.isDarkMode;
-});
+const isDarkMode = computed(() => themeStore.isDarkMode);
+const toggleTheme = () => {
+  themeStore.toggleTheme();
+};
 </script>

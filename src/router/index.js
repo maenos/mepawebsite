@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import SermonViewVue from '@/views/SermonView.vue'
+import ServiceViewVue from '@/views/ServiceView.vue'
+import EvangelisationViewVue from '@/views/EvangelisationView.vue'
+import DonsViewVue from '@/views/DonsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +12,35 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: { layout: 'auth', requiresAuth: false },
+    },
+    {
+      path: '/enseignements',
+      name: 'enseignements',
+      component: SermonViewVue,
+      meta: { layout: 'auth', requiresAuth: false },
+    },
+    {
+      path: '/services',
+      name: 'services',
+      component: ServiceViewVue,
+      meta: { layout: 'auth', requiresAuth: false },
+    },
+    {
+      path: '/evangelisation',
+      name: 'evangelisation',
+      component: EvangelisationViewVue,
+      meta: { layout: 'auth', requiresAuth: false },
+    },
+    {
+      path: '/donations',
+      name: 'donations',
+      component: DonsViewVue,
+      meta: { layout: 'auth', requiresAuth: false },
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('../views/404.vue'),
       meta: { layout: 'auth', requiresAuth: false },
     },
   ],
