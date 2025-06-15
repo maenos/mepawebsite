@@ -18,7 +18,7 @@ jobs:
     - name: Install Bun
       run: |
         curl -fsSL https://bun.sh/install | bash
-      
+        
     - name: Add Bun to PATH
       run: echo "$HOME/.bun/bin" >> $GITHUB_PATH
 
@@ -27,10 +27,26 @@ jobs:
       run: bun install
 
     # Étape 4 : Construire l'application
-    - name: Build  App
+    - name: Build App
       run: bun run build
 
-    # Étape 5 : Déployer via FTP
+    # Étape 5 : Créer le fichier .htaccess pour React Router
+    - name: Create .htaccess file
+      run: |
+        cat > ./dist/.htaccess << 'EOF'
+        RewriteEngine on
+        DirectoryIndex index.html
+        <IfModule mod_rewrite.c>
+          RewriteEngine On
+          RewriteBase /
+          RewriteRule ^index\.html$ - [L]
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteRule . /index.html [L]
+        </IfModule>
+        EOF
+
+    # Étape 6 : Déployer via FTP
     - name: Deploy to Hostinger
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
