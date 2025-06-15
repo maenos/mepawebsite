@@ -1,0 +1,41 @@
+name: Deploy React App to Hostinger Subdomain
+
+on:
+  push:
+    branches:
+      - main  # Déclenche sur la branche `main`
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Étape 1 : Vérifier le code source
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Étape 2 : Installer Bun
+    - name: Install Bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+      
+    - name: Add Bun to PATH
+      run: echo "$HOME/.bun/bin" >> $GITHUB_PATH
+
+    # Étape 3 : Installer les dépendances avec Bun
+    - name: Install dependencies
+      run: bun install
+
+    # Étape 4 : Construire l'application
+    - name: Build  App
+      run: bun run build
+
+    # Étape 5 : Déployer via FTP
+    - name: Deploy to Hostinger
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
+        server-dir: /public_html/
