@@ -1,7 +1,7 @@
 <template>
   <nav
     :class="[
-      'fixed w-full z-10 transition-all duration-500 border-b',
+      'fixed w-full z-999 transition-all duration-500 border-b',
       isDarkMode
         ? 'bg-black/85 backdrop-blur-md border-white/10'
         : 'bg-white/90 backdrop-blur-md border-gray-100',

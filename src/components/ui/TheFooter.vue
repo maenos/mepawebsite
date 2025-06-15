@@ -81,7 +81,8 @@
                 :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
               />
               <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
-                123 Rue de l'Église<br />75000 Paris, France
+                ADIDOADIN, 1ER IMMEUBLE PHARMACIE LAUS DÉO<br />
+                LOMÉ,TOGO
               </span>
             </li>
             <li class="flex items-center">
@@ -90,7 +91,7 @@
                 :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
               />
               <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
-                +33 1 23 45 67 89
+                +2289012222
               </span>
             </li>
             <li class="flex items-center">
