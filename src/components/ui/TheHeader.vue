@@ -12,11 +12,14 @@
         <!-- Logo and Site Name -->
         <div class="flex items-center">
           <div class="flex-shrink-0 flex items-center space-x-3">
-            <img
-              src="@/assets/images/lll.png"
-              alt="SLC Logo"
-              class="h-10 w-auto transition-all duration-300 hover:opacity-90"
-            />
+            <a href="/">
+              <img
+                src="@/assets/images/lll.png"
+                alt="SLC Logo"
+                class="h-10 w-auto transition-all duration-300 hover:opacity-90"
+              />
+            </a>
+
             <div class="flex flex-col">
               <span
                 class="text-xl font-serif tracking-wide"

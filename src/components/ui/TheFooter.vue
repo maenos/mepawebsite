@@ -117,7 +117,7 @@
           <ul class="space-y-4">
             <li>
               <a
-                href="#"
+                href="https://www.facebook.com/mission.mepavie"
                 class="group flex items-center transition-all duration-300"
                 :class="
                   isDarkMode
@@ -169,7 +169,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="https://www.tiktok.com/@siloecentre"
                 class="group flex items-center transition-all duration-300"
                 :class="
                   isDarkMode
@@ -185,17 +185,17 @@
                       : 'bg-amber-100 group-hover:bg-amber-200'
                   "
                 >
-                  <Twitter
+                  <Tiktok
                     class="h-4 w-4"
                     :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
                   />
                 </div>
-                <span>Twitter</span>
+                <span>TikTOk</span>
               </a>
             </li>
             <li>
               <a
-                href="#"
+                href="https://www.youtube.com/@Silo%C3%A9Centre"
                 class="group flex items-center transition-all duration-300"
                 :class="
                   isDarkMode
