@@ -904,7 +904,7 @@
               Découvrez comment la foi peut transformer votre vie et vous donner la force
               de surmonter tous les obstacles avec confiance.
             </p>
-            <a class="flex items-center font-medium group" href="/sermons">
+            <a class="flex items-center font-medium group" href="/enseignements">
               <play
                 class="h-4 w-4 mr-2 group-hover:animate-pulse"
                 :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
