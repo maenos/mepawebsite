@@ -321,7 +321,7 @@
                 >
                   <img
                     :src="
-                      'http://localhost:8000/storage/' +
+                      'https://api.eglisesiloecentre.org/storage/' +
                       (selectedSermon || sermons[0]).image
                     "
                     :alt="(selectedSermon || sermons[0]).title"
@@ -354,7 +354,7 @@
                 <img
                   v-else
                   :src="
-                    'http://localhost:8000/storage/' +
+                    'https://api.eglisesiloecentre.org/storage/' +
                     (selectedSermon || sermons[0]).image
                   "
                   :alt="(selectedSermon || sermons[0]).title"
@@ -571,7 +571,7 @@
                 <div class="relative">
                   <div class="aspect-video overflow-hidden">
                     <img
-                      :src="'http://localhost:8000/storage/' + sermon.image"
+                      :src="'https://api.eglisesiloecentre.org/storage/' + sermon.image"
                       :alt="sermon.title"
                       class="w-full h-full object-cover transition-all duration-700 transform"
                       :class="
@@ -884,7 +884,7 @@ const sermons = ref([]);
 const openSermonDetails = (sermon) => {
   selectedSermon.value = sermon;
   videoUrl.value = sermon?.videoUrl;
-  videoFile.value = "http://localhost:8000/storage/" + sermon?.videoFile;
+  videoFile.value = "https://api.eglisesiloecentre.org/storage/" + sermon?.videoFile;
   readingMode.value = false;
   window.scrollTo({ top: 0, behavior: "smooth" });
 };

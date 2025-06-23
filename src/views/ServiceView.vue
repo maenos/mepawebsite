@@ -872,7 +872,7 @@ function getImageUrl(imagePath) {
   }
 
   // Sinon, construire l'URL à partir du chemin relatif
-  return `http://localhost:8000/storage/${imagePath}`;
+  return `https://api.eglisesiloecentre.org/storage/${imagePath}`;
 }
 
 // Fonctions d'interaction

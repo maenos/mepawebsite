@@ -836,6 +836,7 @@
       <!-- Sermons Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Sermon 1 -->
+        <!-- Sermon 1 -->
         <div
           :class="[
             'rounded-2xl overflow-hidden shadow-xl border group transform transition-all duration-500 hover:scale-102 hover:shadow-lg',
@@ -849,7 +850,7 @@
         >
           <div class="relative overflow-hidden aspect-video">
             <img
-              src="https://v0.dev/placeholder.svg?height=200&width=400"
+              src="https://api.eglisesiloecentre.org/storage/sermons/videos/01JYET27DZQR30DE943H0Z17PX.mp4"
               alt="Miniature du sermon"
               class="w-full h-full object-cover transition-all duration-700 transform"
               :class="
@@ -887,23 +888,23 @@
                 class="text-sm font-medium"
                 :class="isDarkMode ? 'text-amber-100/70' : 'text-amber-700/70'"
               >
-                12 Mars 2023
+                15 Avril 2023
               </div>
             </div>
             <h3
               class="text-2xl font-serif font-semibold mb-3"
               :class="isDarkMode ? 'text-white' : 'text-gray-900'"
             >
-              Marcher dans la Foi
+              La Foi
             </h3>
             <p
               class="mb-6 leading-relaxed"
               :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
             >
-              Le Pasteur Michael Johnson explore comment nous pouvons renforcer notre foi
-              en temps de difficulté.
+              Découvrez comment la foi peut transformer votre vie et vous donner la force
+              de surmonter tous les obstacles avec confiance.
             </p>
-            <button class="flex items-center font-medium group">
+            <a class="flex items-center font-medium group" href="/sermons">
               <play
                 class="h-4 w-4 mr-2 group-hover:animate-pulse"
                 :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
@@ -918,94 +919,7 @@
                   :class="isDarkMode ? 'bg-amber-100' : 'bg-amber-700'"
                 ></span>
               </span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Sermon 2 -->
-        <div
-          :class="[
-            'rounded-2xl overflow-hidden shadow-xl border group transform transition-all duration-500 hover:scale-102 hover:shadow-lg',
-            isDarkMode
-              ? 'bg-gradient-to-br from-gray-800/80 to-black/80 border-white/10 hover:border-amber-100/20 hover:shadow-amber-100/5'
-              : 'bg-gradient-to-br from-white to-amber-50/80 border-amber-100/30 hover:border-amber-200 hover:shadow-amber-700/10',
-          ]"
-          v-motion
-          :initial="{ opacity: 0, y: 50 }"
-          :visible="{ opacity: 1, y: 0, transition: { delay: 300, duration: 800 } }"
-        >
-          <div class="relative overflow-hidden aspect-video">
-            <img
-              src="https://v0.dev/placeholder.svg?height=200&width=400"
-              alt="Miniature du sermon"
-              class="w-full h-full object-cover transition-all duration-700 transform"
-              :class="
-                isDarkMode
-                  ? 'brightness-75 saturate-50 group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105'
-                  : 'brightness-95 group-hover:brightness-105 group-hover:scale-105'
-              "
-            />
-            <div
-              class="absolute inset-0"
-              :class="
-                isDarkMode
-                  ? 'bg-gradient-to-t from-black to-transparent opacity-70'
-                  : 'bg-gradient-to-t from-black/70 to-transparent/40 opacity-50'
-              "
-            ></div>
-            <div
-              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"
-            >
-              <div
-                :class="isDarkMode ? 'bg-amber-100/20' : 'bg-amber-700/20'"
-                class="backdrop-blur-sm p-5 rounded-full transition-transform duration-500 transform hover:scale-110"
-              >
-                <play class="h-10 w-10 text-white" />
-              </div>
-            </div>
-          </div>
-          <div class="p-8">
-            <div class="flex items-center mb-4">
-              <Calendar
-                class="h-4 w-4 mr-2"
-                :class="isDarkMode ? 'text-amber-100/70' : 'text-amber-700/70'"
-              />
-              <div
-                class="text-sm font-medium"
-                :class="isDarkMode ? 'text-amber-100/70' : 'text-amber-700/70'"
-              >
-                5 Mars 2023
-              </div>
-            </div>
-            <h3
-              class="text-2xl font-serif font-semibold mb-3"
-              :class="isDarkMode ? 'text-white' : 'text-gray-900'"
-            >
-              Le Pouvoir de la Prière
-            </h3>
-            <p
-              class="mb-6 leading-relaxed"
-              :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
-            >
-              Découvrez comment la prière peut transformer votre vie et approfondir votre
-              relation avec Dieu.
-            </p>
-            <button class="flex items-center font-medium group">
-              <play
-                class="h-4 w-4 mr-2 group-hover:animate-pulse"
-                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
-              />
-              <span
-                class="relative"
-                :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
-              >
-                Regarder l'enseignement
-                <span
-                  class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 rounded-full"
-                  :class="isDarkMode ? 'bg-amber-100' : 'bg-amber-700'"
-                ></span>
-              </span>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -1040,7 +954,8 @@
             <p class="mb-6" :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
               Découvrez tous nos enseignements et sermons archivés
             </p>
-            <button
+            <a
+              href="/enseignements"
               class="inline-flex items-center justify-center px-6 py-3 rounded-full transition-all duration-300 font-medium"
               :class="
                 isDarkMode
@@ -1049,7 +964,7 @@
               "
             >
               Tous les enseignements
-            </button>
+            </a>
           </div>
         </div>
       </div>
