@@ -30,6 +30,16 @@
           {{ formatDate(sermon.date) }}
         </span>
       </div>
+
+      <div v-if="sermon.series" class="flex items-center">
+        <Layers
+          class="h-5 w-5 mr-2"
+          :class="isDarkMode ? 'text-amber-100' : 'text-amber-700'"
+        />
+        <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
+          {{ sermon.series.title || sermon.series }}
+        </span>
+      </div>
     </div>
 
     <!-- Content Sections -->
@@ -155,7 +165,7 @@
 </template>
 
 <script setup>
-import { User, Calendar } from 'lucide-vue-next'
+import { User, Calendar, Layers } from 'lucide-vue-next'
 
 defineProps({
   sermon: {

@@ -63,6 +63,18 @@
         </span>
       </div>
     </div>
+
+    <!-- Series Section -->
+    <div v-if="sermon.series" class="flex items-center mb-6">
+      <Layers
+        class="h-5 w-5 mr-2"
+        :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
+      />
+      <span :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'">
+        Série : <span class="font-medium">{{ sermon.series.title || sermon.series }}</span>
+      </span>
+    </div>
+
     <p
       class="mb-8 flex-grow leading-relaxed"
       :class="isDarkMode ? 'text-gray-300' : 'text-gray-700'"
@@ -99,6 +111,20 @@
       </button>
 
       <button
+        v-if="sermon.has_audio || sermon.audio_url"
+        @click="$emit('playAudio')"
+        class="flex items-center justify-center gap-2 px-5 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-sm"
+        :class="
+          isDarkMode
+            ? 'bg-white/10 hover:bg-white/15 text-white'
+            : 'bg-amber-50 hover:bg-amber-100 text-amber-700'
+        "
+      >
+        <Headphones class="h-4 w-4" />
+        <span>Écouter</span>
+      </button>
+
+      <button
         class="flex items-center justify-center gap-2 px-5 py-3 rounded-full transition-all duration-300 hover:scale-105"
         :class="
           isDarkMode
@@ -114,7 +140,7 @@
 </template>
 
 <script setup>
-import { Calendar, User, Clock, Tag, BookOpen, Play, Download } from 'lucide-vue-next'
+import { Calendar, User, Clock, Tag, BookOpen, Play, Download, Layers, Headphones } from 'lucide-vue-next'
 
 defineProps({
   sermon: {
@@ -127,7 +153,7 @@ defineProps({
   }
 })
 
-defineEmits(['toggleReading', 'playVideo'])
+defineEmits(['toggleReading', 'playVideo', 'playAudio'])
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)

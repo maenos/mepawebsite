@@ -672,6 +672,7 @@
 
         <!-- Coordonnées et informations -->
         <div
+          id="contact"
           class="mb-20"
           v-motion
           :initial="{ opacity: 0, y: 50 }"
@@ -869,36 +870,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import {
   Banknote,
-  Calendar,
   CheckCircle,
   ChevronDown,
   Church,
   Clock,
   Copy,
   CreditCard,
-  DollarSign,
-  ExternalLink,
   Gift,
   Globe,
   HandHeart,
   Heart,
-  HelpCircle,
   InfoIcon,
   Landmark,
   Mail,
   MapPin,
-  Menu,
   MessageCircle,
-  Moon,
   Phone,
-  Send,
   Smartphone,
-  Sun,
   Users,
-  X,
 } from "lucide-vue-next";
 import { useThemeStore } from "@/stores/theme";
 
@@ -907,7 +899,6 @@ const themeStore = useThemeStore();
 const isDarkMode = computed(() => {
   return themeStore.isDarkMode;
 });
-const mobileMenuOpen = ref(false);
 const activeFaq = ref(null);
 const showCopyConfirmation = ref(false);
 const activePaymentTab = ref("local"); // 'local' ou 'international'
@@ -1156,7 +1147,7 @@ const openPaymentApp = (method) => {
 
 // Fonction pour contacter l'église
 const contactUs = () => {
-  window.open("mailto:dons@siloecenter.org", "_blank");
+  scrollToSection('contact');
 };
 
 // Fonction pour demander des informations sur les virements

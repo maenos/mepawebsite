@@ -70,7 +70,7 @@
             ]"
             >Enseignements</a
           >
-          <a
+<!--           <a
             href="/evangelisation"
             :class="[
               'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105',
@@ -79,7 +79,7 @@
                 : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100',
             ]"
             >Évangélisation</a
-          >
+          > -->
 
           <a
             href="/donations"
@@ -91,6 +91,31 @@
             ]"
             >Dons</a
           >
+
+          <!-- Admin Link -->
+          <a
+            href="https://api.eglisesiloecentre.org/manage"
+            target="_blank"
+            :class="[
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 border ml-2',
+              isDarkMode
+                ? 'text-amber-100 border-amber-100/30 hover:bg-amber-100/10'
+                : 'text-amber-700 border-amber-700/30 hover:bg-amber-50',
+            ]"
+            >Espace Membre</a
+          >
+
+          <button
+            @click="$emit('openRegistration')"
+            class="px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-md ml-2"
+            :class="
+              isDarkMode
+                ? 'bg-amber-600 text-white hover:bg-amber-500 hover:shadow-amber-500/20'
+                : 'bg-amber-500 text-white hover:bg-amber-600 hover:shadow-amber-600/20'
+            "
+          >
+            Rejoignez-nous
+          </button>
 
           <!-- Theme Toggle Button -->
           <button
@@ -181,7 +206,7 @@
           ]"
           >Enseignements</a
         >
-        <a
+<!--         <a
           href="/evangelisation"
           :class="[
             'block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:scale-102',
@@ -190,7 +215,7 @@
               : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100',
           ]"
           >Évangélisation</a
-        >
+        > -->
         <a
           href="/donations"
           :class="[
@@ -201,6 +226,18 @@
           ]"
           >Dons</a
         >
+
+        <button
+          @click="$emit('openRegistration')"
+          class="w-full text-left block px-4 py-3 rounded-lg text-base font-bold transition-all duration-300 hover:scale-102 mt-4"
+          :class="
+            isDarkMode
+              ? 'bg-amber-600/20 text-amber-500 hover:bg-amber-600/30'
+              : 'bg-amber-50 text-amber-600 hover:bg-amber-100'
+          "
+        >
+          Rejoignez-nous
+        </button>
       </div>
     </div>
   </nav>
@@ -208,25 +245,12 @@
 
 <script setup>
 import {
-  BookOpen,
-  Clock,
-  Facebook,
-  Heart,
-  Instagram,
-  Mail,
-  MapPin,
   Menu,
   Moon,
-  Phone,
-  Play,
-  Send,
   Sun,
-  Twitter,
-  Users,
   X,
-  Youtube,
 } from "lucide-vue-next";
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useThemeStore } from "@/stores/theme";
 
 const themeStore = useThemeStore();
@@ -250,4 +274,6 @@ const toggleMobileMenu = () => {
 const toggleTheme = () => {
   themeStore.toggleTheme();
 };
+
+defineEmits(['openRegistration']);
 </script>

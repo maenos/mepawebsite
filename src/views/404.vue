@@ -161,25 +161,25 @@ const suggestedLinks = [
     label: "Services",
     url: "/services",
     icon: Church,
-    iconColor: isDarkMode ? "text-amber-500" : "text-amber-600",
+    iconColor: isDarkMode.value ? "text-amber-500" : "text-amber-600",
   },
   {
     label: "Enseignements",
     url: "/sermons",
     icon: BookOpen,
-    iconColor: isDarkMode ? "text-sky-500" : "text-sky-600",
+    iconColor: isDarkMode.value ? "text-sky-500" : "text-sky-600",
   },
   {
     label: "Événements",
     url: "/events",
     icon: Calendar,
-    iconColor: isDarkMode ? "text-purple-500" : "text-purple-600",
+    iconColor: isDarkMode.value ? "text-purple-500" : "text-purple-600",
   },
   {
     label: "Contact",
     url: "/contact",
     icon: MessageCircle,
-    iconColor: isDarkMode ? "text-green-500" : "text-green-600",
+    iconColor: isDarkMode.value ? "text-green-500" : "text-green-600",
   },
 ];
 

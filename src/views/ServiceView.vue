@@ -732,22 +732,17 @@
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
 import {
-  Calendar,
   CalendarDays,
   CalendarPlus,
   CalendarX,
   Church,
   Clock,
   Eye,
-  Heart,
   LoaderCircle,
   MapPin,
   MessageCircle,
-  Music,
-  HandHelping,
   Share,
   User,
-  Users,
 } from "lucide-vue-next";
 import { useThemeStore } from "@/stores/theme";
 import api from "@/plugin/mepa";
@@ -1053,6 +1048,7 @@ html {
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

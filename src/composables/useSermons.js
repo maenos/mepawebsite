@@ -12,8 +12,15 @@ export function useSermons() {
 
     try {
       const response = await api.get("/sermons")
-      if (response.data) {
-        sermons.value = response.data
+      const data = response.data
+
+      if (Array.isArray(data)) {
+        sermons.value = data
+      } else if (data['hydra:member']) {
+        sermons.value = data['hydra:member']
+      } else if (data.data) {
+        // Handle JSON:API style or wrapped responses
+        sermons.value = data.data
       } else {
         sermons.value = []
         console.log("Aucun sermon trouvé ou format de données incorrect")

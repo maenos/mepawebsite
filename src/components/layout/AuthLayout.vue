@@ -3,41 +3,29 @@
     class="min-h-screen transition-colors duration-500 font-serif"
     :class="isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'"
   >
-    <TheHeader />
+    <TheHeader @openRegistration="isRegistrationOpen = true" />
     <div class="w-full overflow-hidden">
       <RouterView />
     </div>
     <TheFooter />
+    <MemberRegistrationModal
+      :isOpen="isRegistrationOpen"
+      @close="isRegistrationOpen = false"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
-import {
-  BookOpen,
-  Clock,
-  Facebook,
-  Heart,
-  Instagram,
-  Mail,
-  MapPin,
-  Menu,
-  Moon,
-  Phone,
-  Play,
-  Send,
-  Sun,
-  Twitter,
-  Users,
-  X,
-  Youtube,
-} from "lucide-vue-next";
+import { computed, ref } from "vue";
 import TheHeader from "../ui/TheHeader.vue";
+import MemberRegistrationModal from "../ui/MemberRegistrationModal.vue";
 
 import TheFooter from "../ui/TheFooter.vue";
 import { useThemeStore } from "@/stores/theme";
 
 const themeStore = useThemeStore();
+
+const isRegistrationOpen = ref(false);
 
 const isDarkMode = computed(() => {
   return themeStore.isDarkMode;

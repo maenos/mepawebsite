@@ -55,6 +55,16 @@
           Texte
         </div>
 
+        <!-- Audio Icon -->
+        <div
+          v-if="sermon.has_audio || sermon.audio_url"
+          class="absolute top-4 right-4 px-3 py-1 text-xs rounded-full bg-amber-600/80 text-white flex items-center"
+          :class="sermon.content ? 'mr-20' : ''"
+        >
+          <Headphones class="h-3 w-3 mr-1.5" />
+          Audio
+        </div>
+
         <!-- Date Badge -->
         <div
           class="absolute bottom-4 left-4 px-3 py-1 text-xs rounded-full bg-black/60 text-white flex items-center"
@@ -139,7 +149,7 @@
 </template>
 
 <script setup>
-import { Play, BookOpen, Calendar, Clock, User, ChevronRight } from 'lucide-vue-next'
+import { Play, BookOpen, Calendar, Clock, User, ChevronRight, Headphones } from 'lucide-vue-next'
 
 defineProps({
   sermon: {
@@ -167,6 +177,7 @@ const formatDate = (dateString) => {
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
